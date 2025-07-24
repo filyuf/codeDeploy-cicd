@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    color: #000000;
+}
+
+.container {
+    margin: 0 auto;
+    padding: 0 30px;
+}
+
+header {
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    padding: 25px ;
+}
+
+header h1 {
+    display: inline-block;
+    font-size: 20px;
+}
+
+header nav {
+    float: right;
+}
+
+header nav ul {
+    list-style: none;
+}
+
+header nav ul li {
+    display: inline-block;
+    margin-left: 30px;
+}
+
+header nav ul li a {
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+}
+
+header nav ul li a:hover {
+    text-decoration: underline rgb(8, 214, 255);
+}
+
+#home {
+    height: 100vh;
+    color: rgb(0, 0, 0);
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.intro {
+    max-width: 600px;
+}
+
+.intro h2 {
+    font-size: 48px;
+}
+
+.intro p {
+    margin: 20px 0;
+    font-size: 18px;
+}
+
+.intro .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    text-decoration: none;
+    border-radius: 20px;;
+}
+
+.intro .btn:hover {
+    background-color: #555;
+    border-radius: 20px;;
+}
+
+.projects {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.project2 {
+    text-align: center;
+}
+
+.project {
+    width: 30%;
+    margin: 20px 0;
+}
+
+.project h3 {
+    font-size: 24px;
+    margin-top: 10px;
+}
+
+.project p {
+    margin-top: 5px;
+}
+
+#contact {
+    padding: 50px 0;
+    background-color: #f4f4f4;
+    text-align: center;
+}
+
+#contact h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+#contact form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+#contact form input,
+#contact form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+}
+
+footer {
+    padding: 20px 0;
+    background-color: #333;
+    color: white;
+    text-align: center;
+}
+
+footer p {
+    margin: 0;
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Filzah</h1>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#contact">Portfolio</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home">
+        <div class="intro">
+            <h2>Hello, I'm Filzah</h2>
+            <p>Software Engineering Student</p>
+            <a href="#contact" class="btn">See My Skill</a>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>My Soft Skill</h2>
+        <div class="projects">
+            <div class="project">
+                <h3>HTML</h3>
+                <p>Hypertext Markup Language</p>
+            </div>
+            <div class="project">
+                <h3>CSS</h3>
+                <p>Cascading Stylesheet</p> 
+            </div> 
+            <div class="project">
+            <h3>PHP</h3>
+            <p>Hypertext Preprocessor</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Riwayat Pendidikan</h2>
+        <form action="#" method="POST">
+            <input type="text" name="mi" value="Madrasah Ibtidaiyah Hudatul Khairiyah - Lulus" readonly>
+            <input type="text" name="mts" value="Madrasah Tsanawiyah Negeri 6 Jakarta  - Lulus" readonly>
+            <input type="text" name="smk" value="Sekolah Menengan Kejuruan Negeri 10 Jakarta  - Sedang Menempuh" readonly>
+        </form>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>©nanafilyuf</p>
+        </div>
+    </footer>
+</html>

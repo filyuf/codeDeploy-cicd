@@ -1,0 +1,53 @@
+name: CI/CD to ECS with CodeDeploy
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    env:
+      AWS_REGION: us-east-1
+      S3_BUCKET: testing-85875
+      APP_NAME: profile-app
+      DEPLOYMENT_GROUP: myGroup
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Configure AWS Credentials (with session token)
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Login to Amazon ECR
+        run: aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 344889178767.dkr.ecr.us-east-1.amazonaws.com
+
+      - name: Build Docker image
+        run: docker build -t profille .
+
+      - name: Tag Docker image
+        run: docker tag profille:latest 344889178767.dkr.ecr.us-east-1.amazonaws.com/profille:latest
+
+      - name: Push image to Amazon ECR
+        run: docker push 344889178767.dkr.ecr.us-east-1.amazonaws.com/profille:latest
+
+      - name: Zip deployment bundle
+        run: zip -r deploy.zip appspec.yaml testing-td.json
+
+      - name: Upload bundle to S3
+        run: aws s3 cp deploy.zip s3://$S3_BUCKET/deploy.zip
+
+      - name: Deploy to ECS via CodeDeploy
+        run: |
+          aws deploy create-deployment \
+            --application-name $APP_NAME \
+            --deployment-group-name $DEPLOYMENT_GROUP \
+            --s3-location bucket=$S3_BUCKET,key=deploy.zip,bundleType=zip \
+            --deployment-config-name CodeDeployDefault.ECSAllAtOnce
