@@ -12,18 +12,17 @@ jobs:
       AWS_REGION: us-east-1
       S3_BUCKET: testing-85875
       APP_NAME: profile-app
-      DEPLOYMENT_GROUP: myGroup
+      DEPLOYMENT_GROUP: profile-app-group
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Configure AWS Credentials (with session token)
+      - name: Configure AWS Credentials 
         uses: aws-actions/configure-aws-credentials@v2
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
           aws-region: ${{ env.AWS_REGION }}
 
       - name: Login to Amazon ECR
