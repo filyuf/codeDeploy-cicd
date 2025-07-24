@@ -3,7 +3,7 @@ Resources:
   - TargetService:
       Type: AWS::ECS::Service
       Properties:
-        TaskDefinition: "arn:aws:ecs:us-east-1:344889178767:task-definition/td-profile:1
+        TaskDefinition: "arn:aws:ecs:us-east-1:344889178767:task-definition/td-profile:1"
         LoadBalancerInfo:
           ContainerName: "profile-container"
           ContainerPort: 80
